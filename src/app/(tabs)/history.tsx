@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View, SafeAreaView, Platform, StatusBar } from 'react-native';
-import { TrackingCard } from '../../components/TrackingCard';
-import { ThemedText } from '../../components/ThemedText';
+import { TrackingCard } from '../components/TrackingCard';
+import { ThemedText } from '../components/ThemedText';
 
 // Mock data - in a real app, this would come from a database or storage
 const mockHistory = [

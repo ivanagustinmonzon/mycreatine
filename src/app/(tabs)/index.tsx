@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, SafeAreaView, Platform, StatusBar } from 'react-native';
-import { TrackingCard } from '../../components/TrackingCard';
-import { DoseInput } from '../../components/DoseInput';
-import { ThemedView } from '../../components/ThemedView';
-import { ThemedText } from '../../components/ThemedText';
+import { TrackingService } from '../../domain/creatine/tracking-service';
+import { TrackingCard } from '../components/TrackingCard';
+import { DoseInput } from '../components/DoseInput';
+import { ThemedView } from '../components/ThemedView';
+import { ThemedText } from '../components/ThemedText';
 
 export default function TabOneScreen() {
   const [todaysDose, setTodaysDose] = useState(0);
-  const targetDose = 5; // grams
+  const trackingService = TrackingService.getInstance();
+  const phaseConfig = trackingService.getPhaseConfig();
+  const targetDose = phaseConfig.dailyTargetDose;
 
   const handleDoseSubmit = (dose: number) => {
+    trackingService.addDose(dose);
     setTodaysDose(prev => prev + dose);
   };
 
